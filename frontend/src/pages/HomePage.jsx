@@ -236,7 +236,7 @@ export default function HomePage() {
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(16, 185, 129, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10b981' }}>
                 <GraduationCap size={18} />
               </div>
-              <span>Annapoorana Engineering College, Salem</span>
+              <span>Annapoorana Engineering College (Autonomous), Salem</span>
             </div>
           </div>
         </div>
