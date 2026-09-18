@@ -10,13 +10,13 @@ services:
     autoDeploy: true
     envVars:
       - key: PORT
-        value: 8080
+        value: "8080"
       - key: MONGODB_URI
-        value: mongodb+srv://pulseadmin:Pollpass%40123@pulsepoll.wzxqp9i.mongodb.net/pulsepoll_db?retryWrites=true&w=majority&appName=pulsepoll
+        value: "mongodb+srv://pulseadmin:Pollpass%40123@pulsepoll.wzxqp9i.mongodb.net/pulsepoll_db?retryWrites=true&w=majority&appName=pulsepoll"
       - key: MONGODB_NAME
-        value: pulsepoll_db
+        value: "pulsepoll_db"
       - key: REDIS_ADDR
-        value: localhost:6379
+        value: "localhost:6379"
       - key: REDIS_PASSWORD
         value: ""
       - key: REDIS_DB
@@ -26,12 +26,13 @@ services:
       - key: JWT_EXPIRY_HOURS
         value: "72"
       - key: CLIENT_ORIGIN
-        value: https://pulsepoll-zara-frontend.onrender.com
+        value: "https://pulsepoll-zara-frontend.onrender.com"
       - key: FALLBACK_MODE
         value: "true"
 
-  - type: static
+  - type: web
     name: pulsepoll-zara-frontend
+    runtime: static
     rootDir: frontend
     plan: free
     buildCommand: npm install && npm run build
@@ -44,6 +45,6 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_BASE_URL
-        value: https://pulsepoll-zara-backend.onrender.com/api
+        value: "https://pulsepoll-zara-backend.onrender.com/api"
       - key: VITE_WS_HOST
-        value: pulsepoll-zara-backend.onrender.com
+        value: "pulsepoll-zara-backend.onrender.com"
