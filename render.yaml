@@ -1,0 +1,49 @@
+services:
+  - type: web
+    name: pulsepoll-backend
+    runtime: go
+    rootDir: backend
+    plan: free
+    buildCommand: go build -o server ./cmd/server/main.go
+    startCommand: ./server
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_NAME
+        value: pulsepoll_db
+      - key: REDIS_ADDR
+        sync: false
+      - key: REDIS_PASSWORD
+        sync: false
+      - key: REDIS_DB
+        value: "0"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRY_HOURS
+        value: "72"
+      - key: CLIENT_ORIGIN
+        value: https://pulsepoll-frontend.onrender.com
+      - key: FALLBACK_MODE
+        value: "true"
+
+  - type: static
+    name: pulsepoll-frontend
+    rootDir: frontend
+    plan: free
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    pullRequestPreviewsEnabled: false
+    autoDeploy: true
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: https://pulsepoll-backend.onrender.com/api
+      - key: VITE_WS_HOST
+        value: pulsepoll-backend.onrender.com
