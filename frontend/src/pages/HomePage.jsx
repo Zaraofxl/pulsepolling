@@ -3,7 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { 
   ArrowRight, 
-  Sparkles 
+  Sparkles,
+  Code2,
+  Mail,
+  GraduationCap
 } from 'lucide-react';
 import LiveResultsChart from '../components/LiveResultsChart';
 import ReactionStream from '../components/ReactionStream';
@@ -181,7 +184,65 @@ export default function HomePage() {
         {/* Live floating reactions stream */}
         <ReactionStream />
       </section>
+
+      {/* Developer Profile Section */}
+      <section style={{ maxWidth: '680px', margin: '0 auto', width: '100%' }}>
+        <div className="glass-card" style={{ padding: '2rem 2.5rem', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            padding: '0.4rem 1rem',
+            borderRadius: '9999px',
+            background: 'rgba(99, 102, 241, 0.12)',
+            color: 'var(--primary)',
+            fontSize: '0.85rem',
+            fontWeight: 600,
+            marginBottom: '1rem',
+          }}>
+            <Code2 size={16} />
+            <span>Developed by</span>
+          </div>
+
+          <h3 style={{ fontSize: '1.65rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '1.25rem', letterSpacing: '-0.02em' }}>
+            Deepan A
+          </h3>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', alignItems: 'center' }}>
+            <a 
+              href="mailto:deepanrao1205@gmail.com"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.65rem',
+                color: 'var(--text-secondary)',
+                fontSize: '0.95rem',
+                textDecoration: 'none',
+              }}
+            >
+              <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(99, 102, 241, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)' }}>
+                <Mail size={16} />
+              </div>
+              <span>deepanrao1205@gmail.com</span>
+            </a>
+
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.65rem',
+              color: 'var(--text-secondary)',
+              fontSize: '0.95rem',
+            }}>
+              <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(16, 185, 129, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10b981' }}>
+                <GraduationCap size={18} />
+              </div>
+              <span>Annapoorana Engineering College, Salem</span>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
+
 
