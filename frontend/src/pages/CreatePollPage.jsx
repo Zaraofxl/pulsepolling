@@ -38,6 +38,8 @@ export default function CreatePollPage() {
   // Settings State
   const [allowMultiple, setAllowMultiple] = useState(false);
   const [requireName, setRequireName] = useState(false);
+  const [requireGender, setRequireGender] = useState(false);
+  const [requirePlace, setRequirePlace] = useState(false);
   const [hasExpiry, setHasExpiry] = useState(false);
   const [expiryDate, setExpiryDate] = useState('');
 
@@ -97,6 +99,8 @@ export default function CreatePollPage() {
         settings: {
           allow_multiple: allowMultiple,
           require_voter_name: requireName,
+          require_gender: requireGender,
+          require_place: requirePlace,
           show_results_immediately: true,
           expires_at: hasExpiry && expiryDate ? new Date(expiryDate).toISOString() : undefined,
         },
@@ -292,6 +296,34 @@ export default function CreatePollPage() {
                 <div>
                   <div style={{ fontWeight: 600, fontSize: '0.95rem' }}>Require Voter Name</div>
                   <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Prompt participants for their name before voting</div>
+                </div>
+              </label>
+
+              {/* Require Voter Gender */}
+              <label style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={requireGender}
+                  onChange={(e) => setRequireGender(e.target.checked)}
+                  style={{ width: '18px', height: '18px', accentColor: 'var(--accent-primary)' }}
+                />
+                <div>
+                  <div style={{ fontWeight: 600, fontSize: '0.95rem' }}>Require Voter Gender</div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Prompt participants to select their gender (Male, Female, Other)</div>
+                </div>
+              </label>
+
+              {/* Require Voter Place / Location */}
+              <label style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={requirePlace}
+                  onChange={(e) => setRequirePlace(e.target.checked)}
+                  style={{ width: '18px', height: '18px', accentColor: 'var(--accent-primary)' }}
+                />
+                <div>
+                  <div style={{ fontWeight: 600, fontSize: '0.95rem' }}>Require Voter Place / Location</div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Prompt participants to enter their city or location</div>
                 </div>
               </label>
 

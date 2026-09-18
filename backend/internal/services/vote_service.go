@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"strings"
 	"time"
 
 	"pulsepoll-backend/internal/models"
@@ -76,6 +77,19 @@ func (s *VoteService) CastVote(ctx context.Context, pollID string, clientIP stri
 		}
 	}
 
+	// Verify demographic requirements
+	if poll.Settings.RequireVoterName && strings.TrimSpace(req.VoterName) == "" {
+		return nil, errors.New("your name is required to participate in this poll")
+	}
+
+	if poll.Settings.RequireGender && strings.TrimSpace(req.VoterGender) == "" {
+		return nil, errors.New("your gender is required to participate in this poll")
+	}
+
+	if poll.Settings.RequirePlace && strings.TrimSpace(req.VoterPlace) == "" {
+		return nil, errors.New("your place / location is required to participate in this poll")
+	}
+
 	// ------------------------------------------------------------------------
 	// STEP 3: Deduplication & Anti-Spam Check via Redis Sets
 	// ------------------------------------------------------------------------
@@ -138,7 +152,9 @@ func (s *VoteService) CastVote(ctx context.Context, pollID string, clientIP stri
 			VoterFingerprint: req.VoterFingerprint,
 			VoterIP:          clientIP,
 			UserAgent:        userAgent,
-			VoterName:        req.VoterName,
+			VoterName:        strings.TrimSpace(req.VoterName),
+			VoterGender:      strings.TrimSpace(req.VoterGender),
+			VoterPlace:       strings.TrimSpace(req.VoterPlace),
 		}
 
 		// Persist audit record in MongoDB

@@ -18,8 +18,10 @@ import {
   Radio, 
   Loader2, 
   ArrowLeft,
-  Share2
+  Share2,
+  FileImage
 } from 'lucide-react';
+import { exportChartPng } from '../utils/exportChartPng';
 
 // ============================================================================
 // PRESENTER / HOST LIVE PRESENTATION PAGE
@@ -217,6 +219,17 @@ export default function PollAdminLivePage() {
             <Download size={15} />
             <span>CSV</span>
           </a>
+
+          {/* Download Chart PNG */}
+          <button
+            onClick={() => exportChartPng(poll)}
+            className="btn btn-secondary"
+            style={{ padding: '0.5rem 0.85rem', fontSize: '0.85rem', color: '#818cf8' }}
+            title="Download Chart as PNG Image"
+          >
+            <FileImage size={15} />
+            <span>PNG Chart</span>
+          </button>
 
           {/* Fullscreen Toggle */}
           <button

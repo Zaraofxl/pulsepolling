@@ -13,11 +13,15 @@ import { Check, Send, AlertCircle, Loader2 } from 'lucide-react';
 export default function VotingInterface({ poll, onVoteSubmitted }) {
   const [selectedOptionIDs, setSelectedOptionIDs] = useState([]);
   const [voterName, setVoterName] = useState('');
+  const [voterGender, setVoterGender] = useState('');
+  const [voterPlace, setVoterPlace] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   const allowMultiple = poll.settings?.allow_multiple || false;
   const requireName = poll.settings?.require_voter_name || false;
+  const requireGender = poll.settings?.require_gender || false;
+  const requirePlace = poll.settings?.require_place || false;
 
   // Toggle option selection
   const handleToggleOption = (optionID) => {
@@ -47,6 +51,16 @@ export default function VotingInterface({ poll, onVoteSubmitted }) {
       return;
     }
 
+    if (requireGender && !voterGender.trim()) {
+      setErrorMessage('Please select your gender to submit your vote.');
+      return;
+    }
+
+    if (requirePlace && !voterPlace.trim()) {
+      setErrorMessage('Please enter your place / location to submit your vote.');
+      return;
+    }
+
     setIsSubmitting(true);
     try {
       const fingerprint = getVoterFingerprint();
@@ -54,6 +68,8 @@ export default function VotingInterface({ poll, onVoteSubmitted }) {
         option_ids: selectedOptionIDs,
         voter_fingerprint: fingerprint,
         voter_name: voterName.trim() || undefined,
+        voter_gender: voterGender.trim() || undefined,
+        voter_place: voterPlace.trim() || undefined,
       };
 
       const res = await voteAPI.castVote(poll.id, payload);
@@ -158,13 +174,49 @@ export default function VotingInterface({ poll, onVoteSubmitted }) {
       {/* Optional Voter Name Input */}
       {requireName && (
         <div className="input-group" style={{ marginTop: '0.5rem' }}>
-          <label className="input-label">Your Name (Required by host)</label>
+          <label className="input-label">Your Name (Required by host) *</label>
           <input
             type="text"
             className="input-field"
             placeholder="e.g. Alex Smith"
             value={voterName}
             onChange={(e) => setVoterName(e.target.value)}
+            required
+          />
+        </div>
+      )}
+
+      {/* Required Voter Gender Input */}
+      {requireGender && (
+        <div className="input-group" style={{ marginTop: '0.5rem' }}>
+          <label className="input-label">Your Gender (Required by host) *</label>
+          <select
+            className="input-field"
+            value={voterGender}
+            onChange={(e) => setVoterGender(e.target.value)}
+            required
+            style={{ cursor: 'pointer' }}
+          >
+            <option value="">-- Select Gender --</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Non-Binary">Non-Binary</option>
+            <option value="Prefer not to say">Prefer not to say</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      )}
+
+      {/* Required Voter Place / Location Input */}
+      {requirePlace && (
+        <div className="input-group" style={{ marginTop: '0.5rem' }}>
+          <label className="input-label">Your Place / Location (Required by host) *</label>
+          <input
+            type="text"
+            className="input-field"
+            placeholder="e.g. Salem, Chennai, Bangalore..."
+            value={voterPlace}
+            onChange={(e) => setVoterPlace(e.target.value)}
             required
           />
         </div>

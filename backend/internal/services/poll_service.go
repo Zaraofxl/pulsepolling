@@ -284,12 +284,14 @@ func (s *PollService) ExportPollCSV(ctx context.Context, pollID string) ([]byte,
 	_ = writer.Write([]string{""}) // Blank line
 
 	// Section 3: Vote Audit Logs
-	_ = writer.Write([]string{"Audit Log ID", "Selected Options", "Voter Name", "Voter IP", "Timestamp"})
+	_ = writer.Write([]string{"Audit Log ID", "Selected Options", "Voter Name", "Gender", "Place", "Voter IP", "Timestamp"})
 	for _, logItem := range logs {
 		_ = writer.Write([]string{
 			logItem.ID.Hex(),
 			strings.Join(logItem.OptionIDs, ", "),
 			logItem.VoterName,
+			logItem.VoterGender,
+			logItem.VoterPlace,
 			logItem.VoterIP,
 			logItem.CreatedAt.Format(time.RFC3339),
 		})

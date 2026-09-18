@@ -21,6 +21,12 @@ type CastVoteRequest struct {
 
 	// VoterName: Optional name provided by the voter if required or requested
 	VoterName string `json:"voter_name"`
+
+	// VoterGender: Gender of the voter if requested by poll settings
+	VoterGender string `json:"voter_gender"`
+
+	// VoterPlace: Place/Location/City of the voter if requested by poll settings
+	VoterPlace string `json:"voter_place"`
 }
 
 // VoteLog represents the persistent, immutable audit record written to MongoDB for analytics and history.
@@ -45,6 +51,12 @@ type VoteLog struct {
 
 	// VoterName: Display name of the voter if provided
 	VoterName string `bson:"voter_name,omitempty" json:"voter_name,omitempty"`
+
+	// VoterGender: Gender of the voter if provided
+	VoterGender string `bson:"voter_gender,omitempty" json:"voter_gender,omitempty"`
+
+	// VoterPlace: Location/Place of the voter if provided
+	VoterPlace string `bson:"voter_place,omitempty" json:"voter_place,omitempty"`
 
 	// CreatedAt: UTC timestamp when the vote was registered
 	CreatedAt time.Time `bson:"created_at" json:"created_at"`

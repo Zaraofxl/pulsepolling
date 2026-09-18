@@ -10,10 +10,13 @@ import {
   Play, 
   Pause,
   ExternalLink,
-  Users
+  Users,
+  FileImage
 } from 'lucide-react';
 import { pollAPI } from '../api/client';
 import QRCodeModal from './QRCodeModal';
+import LiveResultsChart from './LiveResultsChart';
+import { exportChartPng } from '../utils/exportChartPng';
 
 // ============================================================================
 // DASHBOARD POLL CARD COMPONENT
@@ -92,6 +95,11 @@ export default function PollCard({ poll, onPollUpdated, onPollDeleted }) {
           </p>
         </div>
 
+        {/* Polling Results Chart */}
+        <div style={{ padding: '0.85rem 1rem', background: 'var(--bg-input)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
+          <LiveResultsChart poll={poll} />
+        </div>
+
         {/* Primary Action Buttons */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.65rem' }}>
           <Link
@@ -133,6 +141,16 @@ export default function PollCard({ poll, onPollUpdated, onPollDeleted }) {
               title="Show Audience QR Code"
             >
               <QrCode size={15} />
+            </button>
+
+            {/* Download PNG Chart */}
+            <button
+              onClick={() => exportChartPng(poll)}
+              className="btn btn-secondary btn-icon"
+              title="Download Polling Chart as PNG"
+              style={{ color: '#818cf8' }}
+            >
+              <FileImage size={15} />
             </button>
 
             {/* Toggle Active / Pause */}

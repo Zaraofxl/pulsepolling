@@ -35,6 +35,12 @@ type PollSettings struct {
 	// RequireVoterName: If true, voters are prompted to supply their name
 	RequireVoterName bool `bson:"require_voter_name" json:"require_voter_name"`
 
+	// RequireGender: If true, voters are prompted to supply their gender
+	RequireGender bool `bson:"require_gender" json:"require_gender"`
+
+	// RequirePlace: If true, voters are prompted to supply their place/location
+	RequirePlace bool `bson:"require_place" json:"require_place"`
+
 	// ShowResultsImmediately: Whether viewers see live percentages before or only after voting
 	ShowResultsImmediately bool `bson:"show_results_immediately" json:"show_results_immediately"`
 
