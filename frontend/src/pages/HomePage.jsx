@@ -6,7 +6,8 @@ import {
   Sparkles,
   Code2,
   Mail,
-  GraduationCap
+  GraduationCap,
+  Layers
 } from 'lucide-react';
 import LiveResultsChart from '../components/LiveResultsChart';
 import ReactionStream from '../components/ReactionStream';
@@ -63,15 +64,6 @@ export default function HomePage() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem', paddingBottom: '3rem' }}>
       {/* Hero Section */}
       <section style={{ textAlign: 'center', maxWidth: '850px', margin: '1rem auto 0', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', margin: '0 auto' }}>
-          <span className="badge badge-live">
-            Sub-millisecond Realtime
-          </span>
-          <span className="badge" style={{ background: 'rgba(99, 102, 241, 0.15)', color: '#818cf8' }}>
-            Go + Redis + React + MongoDB
-          </span>
-        </div>
-
         <h1 style={{
           fontSize: 'clamp(2.5rem, 6vw, 4rem)',
           fontWeight: 800,
@@ -237,6 +229,24 @@ export default function HomePage() {
                 <GraduationCap size={18} />
               </div>
               <span>Annapoorana Engineering College (Autonomous), Salem</span>
+            </div>
+
+            {/* Technology Stack Details */}
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              marginTop: '0.5rem',
+              padding: '0.45rem 1rem',
+              borderRadius: '9999px',
+              background: 'rgba(99, 102, 241, 0.12)',
+              color: '#818cf8',
+              fontSize: '0.85rem',
+              fontWeight: 600,
+              border: '1px solid rgba(99, 102, 241, 0.25)',
+            }}>
+              <Layers size={16} />
+              <span>Go + Redis + React + MongoDB</span>
             </div>
           </div>
         </div>
