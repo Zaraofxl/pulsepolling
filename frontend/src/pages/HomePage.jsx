@@ -2,15 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { 
-  Zap, 
-  Flame, 
-  Layers, 
-  QrCode, 
   ArrowRight, 
-  CheckCircle, 
-  BarChart3, 
-  Sparkles,
-  ShieldCheck
+  Sparkles 
 } from 'lucide-react';
 import LiveResultsChart from '../components/LiveResultsChart';
 import ReactionStream from '../components/ReactionStream';
@@ -188,64 +181,7 @@ export default function HomePage() {
         {/* Live floating reactions stream */}
         <ReactionStream />
       </section>
-
-      {/* Stack & Architecture Features Grid */}
-      <section style={{ maxWidth: '1100px', margin: '0 auto', width: '100%' }}>
-        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-          <h2 style={{ fontSize: '2rem', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '0.5rem' }}>
-            Built with a high-performance stack
-          </h2>
-          <p style={{ color: 'var(--text-secondary)' }}>
-            Every layer executes real work to guarantee real-time speed, integrity, and resilience.
-          </p>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
-          {/* Card 1: Redis */}
-          <div className="glass-card" style={{ padding: '1.75rem' }}>
-            <div style={{ background: 'rgba(239, 68, 68, 0.15)', color: '#ef4444', width: '42px', height: '42px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-              <Flame size={24} />
-            </div>
-            <h4 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '0.5rem' }}>Redis Realtime Core</h4>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-              Atomic <code style={{ color: '#ef4444' }}>HINCRBY</code> counters, deduplication sets, and Pub/Sub broadcasting channels with zero lock contention.
-            </p>
-          </div>
-
-          {/* Card 2: Go Gin */}
-          <div className="glass-card" style={{ padding: '1.75rem' }}>
-            <div style={{ background: 'rgba(6, 182, 212, 0.15)', color: '#06b6d4', width: '42px', height: '42px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-              <Zap size={24} />
-            </div>
-            <h4 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '0.5rem' }}>Go Concurrency Engine</h4>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-              High-throughput Gin HTTP routing with thread-safe Gorilla WebSocket connection hubs and JWT auth middleware.
-            </p>
-          </div>
-
-          {/* Card 3: MongoDB */}
-          <div className="glass-card" style={{ padding: '1.75rem' }}>
-            <div style={{ background: 'rgba(16, 185, 129, 0.15)', color: '#10b981', width: '42px', height: '42px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-              <Layers size={24} />
-            </div>
-            <h4 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '0.5rem' }}>MongoDB Persistence</h4>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-              Async write-through audit logging for historical vote logs, accounts, and poll configurations with full CSV export support.
-            </p>
-          </div>
-
-          {/* Card 4: React UI */}
-          <div className="glass-card" style={{ padding: '1.75rem' }}>
-            <div style={{ background: 'rgba(99, 102, 241, 0.15)', color: '#818cf8', width: '42px', height: '42px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-              <BarChart3 size={24} />
-            </div>
-            <h4 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '0.5rem' }}>Reactive React UI</h4>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-              Live updating animated bar charts, floating emoji streams, instant QR code generator, and full presenter presentation view.
-            </p>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
+
