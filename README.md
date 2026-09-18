@@ -2,6 +2,10 @@
 
 A production-grade, human-crafted real-time live polling platform built with **React**, **Go (Gin)**, **MongoDB**, and **Redis**.
 
+- **🌐 Live Deployed Frontend**: [https://pulsepoll-zara-frontend.onrender.com](https://pulsepoll-zara-frontend.onrender.com)
+- **🔌 Live Deployed Backend API**: [https://pulsepoll-zara-backend.onrender.com](https://pulsepoll-zara-backend.onrender.com)
+- **📦 GitHub Repository**: [https://github.com/Zaraofxl/pulsepolling](https://github.com/Zaraofxl/pulsepolling)
+
 A creator can launch a poll, project the live presentation view or share a scannable QR code, and an audience can cast votes with instant, sub-millisecond animated percentage updates with **zero page refreshes**.
 
 ---
