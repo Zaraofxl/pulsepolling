@@ -12,7 +12,7 @@ services:
       - key: PORT
         value: "8080"
       - key: MONGODB_URI
-        value: "mongodb+srv://pulseadmin:Pollpass%40123@pulsepoll.wzxqp9i.mongodb.net/pulsepoll_db?retryWrites=true&w=majority&appName=pulsepoll"
+        sync: false
       - key: MONGODB_NAME
         value: "pulsepoll_db"
       - key: REDIS_ADDR
